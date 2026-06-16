@@ -14,12 +14,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "ElectroAuto | Carros Eléctricos Premium",
+    default: "ElectroAuto | Vehículos Eléctricos Premium",
     template: "%s | ElectroAuto",
   },
   description:
-    "Descubre nuestra selección de carros eléctricos de alta gama. Compara modelos, calcula autonomía y encuentra el vehículo eléctrico perfecto para ti.",
-  keywords: ["carros eléctricos", "vehículos eléctricos", "EV", "autos eléctricos"],
+    "Descubre nuestra selección de vehículos eléctricos de alta gama. Compara modelos, calcula autonomía y encuentra el vehículo eléctrico perfecto para ti.",
+  keywords: ["vehículos eléctricos", "EV", "vehículo eléctrico"],
 };
 
 export default function RootLayout({

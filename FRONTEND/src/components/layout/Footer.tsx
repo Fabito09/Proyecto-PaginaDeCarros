@@ -23,7 +23,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { href: "/carros", label: "Catálogo" },
-                { href: "/comparar", label: "Comparar Carros" },
+                { href: "/comparar", label: "Comparar Vehículos" },
                 { href: "/contacto", label: "Contacto" },
               ].map((link) => (
                 <li key={link.href}>

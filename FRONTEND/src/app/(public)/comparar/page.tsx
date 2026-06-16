@@ -3,7 +3,7 @@ import ComparatorClient from "@/components/ui/ComparatorClient";
 import { Car } from "@/types";
 
 export const metadata = {
-  title: "Comparar Carros",
+  title: "Comparar Vehículos",
   description: "Compara vehículos eléctricos lado a lado y encuentra el ideal para ti.",
 };
 

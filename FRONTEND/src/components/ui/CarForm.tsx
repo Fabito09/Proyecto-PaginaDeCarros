@@ -109,7 +109,7 @@ export default function CarForm({ car }: CarFormProps) {
         <h2 className="text-xs font-semibold text-muted uppercase tracking-wider">Especificaciones Técnicas</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           <div>
-            <label className="label" htmlFor="price">Precio (HNL) *</label>
+            <label className="label" htmlFor="price">Precio (CRC) *</label>
             <input
               id="price" name="price" type="number" required min={0} step="0.01"
               defaultValue={car?.price ?? ""}

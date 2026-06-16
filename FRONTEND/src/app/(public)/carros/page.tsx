@@ -5,7 +5,7 @@ import { Search, SlidersHorizontal, Zap } from "lucide-react";
 
 export const metadata = {
   title: "Catálogo",
-  description: "Explora nuestra selección de carros eléctricos premium.",
+  description: "Explora nuestra selección de vehículos eléctricos premium.",
 };
 
 export default async function CatalogPage() {
