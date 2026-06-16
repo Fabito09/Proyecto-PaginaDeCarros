@@ -44,8 +44,8 @@ export default function Footer() {
             <ul className="space-y-4">
               {[
                 { icon: Mail, value: "info@electroauto.com" },
-                { icon: Phone, value: "+504 0000-0000" },
-                { icon: MapPin, value: "Honduras" },
+                { icon: Phone, value: "+506 0000-0000" },
+                { icon: MapPin, value: "Costa Rica" },
               ].map(({ icon: Icon, value }) => (
                 <li key={value} className="flex items-center gap-3 text-muted text-sm">
                   <Icon className="w-4 h-4 text-primary shrink-0" />
