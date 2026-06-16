@@ -1,6 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -12,6 +11,7 @@ import {
   Timer,
   CheckCircle2,
 } from "lucide-react";
+import ImageGallery from "@/components/ui/ImageGallery";
 import { formatPrice, formatPriceUSD } from "@/lib/utils";
 
 export async function generateMetadata({
@@ -72,51 +72,13 @@ export default async function CarDetailPage({
       </Link>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Image */}
-        <div
-          className="relative h-80 lg:h-[480px] rounded-2xl overflow-hidden"
-          style={{
-            background: "linear-gradient(135deg, #16382c 0%, #2a6f56 50%, #112920 100%)",
-            border: "1px solid rgba(255,255,255,0.06)",
-            boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
-          }}
-        >
-          {car.images && car.images[0] ? (
-            <Image
-              src={car.images[0]}
-              alt={`${car.brand} ${car.model}`}
-              fill
-              className="object-cover"
-            />
-          ) : (
-            <div className="flex flex-col items-center justify-center h-full gap-4">
-              <span
-                className="w-3 h-3 rounded-full bg-primary absolute bottom-10 left-10"
-                style={{ boxShadow: "0 0 14px #00e5ff" }}
-              />
-              <span
-                className="w-3 h-3 rounded-full bg-primary absolute bottom-10 right-10"
-                style={{ boxShadow: "0 0 14px #00e5ff" }}
-              />
-              <Zap className="w-16 h-16 text-primary/20" />
-              <span className="text-muted/40 text-xs tracking-widest uppercase font-mono">
-                {car.brand} {car.model}
-              </span>
-            </div>
-          )}
-          {car.is_featured && (
-            <span
-              className="absolute top-4 left-4 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider"
-              style={{
-                background: "#00e5ff",
-                color: "#070a0c",
-                boxShadow: "0 0 16px rgba(0,229,255,0.5)",
-              }}
-            >
-              Destacado
-            </span>
-          )}
-        </div>
+        {/* Gallery */}
+        <ImageGallery
+          images={car.images ?? []}
+          brand={car.brand}
+          model={car.model}
+          isFeatured={car.is_featured}
+        />
 
         {/* Info */}
         <div className="flex flex-col justify-between gap-8">
