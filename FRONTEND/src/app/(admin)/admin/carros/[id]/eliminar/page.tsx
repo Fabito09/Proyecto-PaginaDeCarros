@@ -9,8 +9,15 @@ export const metadata = {
   title: "Eliminar Vehículo — Admin",
 };
 
-export default async function DeleteCarPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function DeleteCarPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ error?: string }>;
+}) {
   const { id } = await params;
+  const { error: hasError } = await searchParams;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/admin/login");
@@ -25,7 +32,10 @@ export default async function DeleteCarPage({ params }: { params: Promise<{ id: 
 
   async function handleDelete() {
     "use server";
-    await deleteCar(id);
+    const result = await deleteCar(id);
+    if (result && !result.success) {
+      redirect(`/admin/carros/${id}/eliminar?error=1`);
+    }
   }
 
   return (
@@ -57,6 +67,11 @@ export default async function DeleteCarPage({ params }: { params: Promise<{ id: 
             <p className="text-red-400/80 text-xs mt-3">
               Esta acción no se puede deshacer.
             </p>
+            {hasError && (
+              <p className="text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-3 mt-4">
+                Error al eliminar el vehículo. Intenta de nuevo.
+              </p>
+            )}
           </div>
 
           <div className="flex gap-3 justify-center pt-2">
