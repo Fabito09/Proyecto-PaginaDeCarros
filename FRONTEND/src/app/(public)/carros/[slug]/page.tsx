@@ -12,7 +12,7 @@ import {
   Timer,
   CheckCircle2,
 } from "lucide-react";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, formatPriceUSD } from "@/lib/utils";
 
 export async function generateMetadata({
   params,
@@ -143,6 +143,7 @@ export default async function CarDetailPage({
               >
                 {formatPrice(car.price)}
               </p>
+              <p className="text-muted text-sm mt-1">{formatPriceUSD(car.price)}</p>
             </div>
 
             {car.description && (

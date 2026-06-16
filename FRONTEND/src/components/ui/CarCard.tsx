@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Zap, Battery, Gauge } from "lucide-react";
 import { Car } from "@/types";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, formatPriceUSD } from "@/lib/utils";
 
 interface CarCardProps {
   car: Car;
@@ -110,6 +110,7 @@ export default function CarCard({ car }: CarCardProps) {
           <div>
             <p className="text-muted text-xs uppercase tracking-wider">Precio</p>
             <p className="text-foreground font-bold text-lg">{formatPrice(car.price)}</p>
+            <p className="text-muted text-xs">{formatPriceUSD(car.price)}</p>
           </div>
           <span
             className="text-xs font-semibold uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 transition-opacity"
