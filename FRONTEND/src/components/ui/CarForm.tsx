@@ -5,6 +5,7 @@ import { createCar, updateCar, CarFormData } from "@/app/actions/cars";
 import { Car } from "@/types";
 import Link from "next/link";
 import { Save } from "lucide-react";
+import ImageUploader from "@/components/ui/ImageUploader";
 
 interface CarFormProps {
   car?: Car;
@@ -13,6 +14,7 @@ interface CarFormProps {
 export default function CarForm({ car }: CarFormProps) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [imageUrls, setImageUrls] = useState<string[]>(car?.images ?? []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -34,7 +36,7 @@ export default function CarForm({ car }: CarFormProps) {
       acceleration_0_100: (fd.get("acceleration_0_100") as string) ?? "",
       description: (fd.get("description") as string) ?? "",
       features: (fd.get("features") as string) ?? "",
-      images: (fd.get("images") as string) ?? "",
+      images: imageUrls.join(","),
       is_featured: (fd.get("is_featured") as string) ?? "false",
     };
 
@@ -197,19 +199,11 @@ export default function CarForm({ car }: CarFormProps) {
           />
         </div>
         <div>
-          <label className="label" htmlFor="images">
-            URLs de imágenes
-            <span className="text-muted/60 font-normal ml-2 text-xs">(separadas por coma)</span>
-          </label>
-          <textarea
-            id="images" name="images" rows={2}
-            defaultValue={car?.images?.join(", ") ?? ""}
-            placeholder="https://ejemplo.com/imagen1.jpg, https://ejemplo.com/imagen2.jpg"
-            className="input resize-none"
+          <label className="label">Imágenes del vehículo</label>
+          <ImageUploader
+            initialImages={car?.images ?? []}
+            onChange={setImageUrls}
           />
-          <p className="text-muted/60 text-xs mt-1.5">
-            Puedes subir imágenes al bucket <span className="text-primary">car-images</span> en Supabase Storage y pegar las URLs aquí.
-          </p>
         </div>
       </div>
 
