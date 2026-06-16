@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, Mail, MailOpen, Zap } from "lucide-react";
 import { ContactMessage } from "@/types";
 import LogoutButton from "@/components/ui/LogoutButton";
+import MarkAsReadButton from "@/components/ui/MarkAsReadButton";
 
 export const metadata = {
   title: "Mensajes — Admin",
@@ -77,13 +78,16 @@ export default async function MessagesPage() {
                       <p className="text-foreground/80 text-sm leading-relaxed">{msg.message}</p>
                     </div>
                   </div>
-                  <p className="text-muted text-xs shrink-0">
-                    {new Date(msg.created_at).toLocaleDateString("es-HN", {
-                      day: "2-digit",
-                      month: "short",
-                      year: "numeric",
-                    })}
-                  </p>
+                  <div className="flex flex-col items-end gap-2 shrink-0">
+                    <p className="text-muted text-xs">
+                      {new Date(msg.created_at).toLocaleDateString("es-CR", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </p>
+                    {!msg.read && <MarkAsReadButton id={msg.id} />}
+                  </div>
                 </div>
               </div>
             ))}

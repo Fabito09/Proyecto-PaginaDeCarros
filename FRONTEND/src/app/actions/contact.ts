@@ -21,6 +21,20 @@ const MAX_LENGTHS = {
   message: 2000,
 };
 
+export async function markMessageAsRead(id: string): Promise<ActionResult> {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return { success: false, error: "No autorizado." };
+
+  const { error } = await supabase
+    .from("contact_messages")
+    .update({ read: true })
+    .eq("id", id);
+
+  if (error) return { success: false, error: error.message };
+  return { success: true };
+}
+
 export async function submitContactForm(data: ContactInput): Promise<ActionResult> {
   const name = data.name?.trim();
   const email = data.email?.trim().toLowerCase();
