@@ -107,7 +107,7 @@ export default function ContactForm() {
           maxLength={20}
           value={form.phone}
           onChange={handleChange}
-          placeholder="+504 0000-0000"
+          placeholder="+506 0000-0000"
           className="input"
         />
       </div>
