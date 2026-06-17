@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import ContactForm from "@/components/ui/ContactForm";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 
@@ -95,7 +96,9 @@ export default function ContactPage() {
             Envíanos un Mensaje
           </h2>
           <div className="card">
-            <ContactForm />
+            <Suspense fallback={<div className="py-12 text-center text-muted text-sm">Cargando formulario...</div>}>
+              <ContactForm />
+            </Suspense>
           </div>
         </div>
       </div>
