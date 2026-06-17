@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
-import CarCard from "@/components/ui/CarCard";
 import { Car } from "@/types";
-import { Search, SlidersHorizontal, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
+import CatalogClient from "@/components/ui/CatalogClient";
 
 export const metadata = {
   title: "Catálogo",
@@ -41,24 +41,6 @@ export default async function CatalogPage() {
 
       <hr className="circuit-line mb-10" />
 
-      {/* Search & Filters */}
-      <div className="flex flex-col sm:flex-row gap-4 mb-10">
-        <div className="relative flex-1">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted/50" />
-          <input
-            type="text"
-            placeholder="Buscar por marca o modelo..."
-            className="input pl-11"
-            disabled
-          />
-        </div>
-        <button className="btn-secondary gap-2" disabled>
-          <SlidersHorizontal className="w-4 h-4" />
-          Filtros
-        </button>
-      </div>
-
-      {/* Grid */}
       {!cars || cars.length === 0 ? (
         <div className="text-center py-24 card max-w-md mx-auto">
           <Zap className="w-12 h-12 text-primary/30 mx-auto mb-4" />
@@ -70,11 +52,7 @@ export default async function CatalogPage() {
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {cars.map((car: Car) => (
-            <CarCard key={car.id} car={car} />
-          ))}
-        </div>
+        <CatalogClient cars={cars as Car[]} />
       )}
     </div>
   );
