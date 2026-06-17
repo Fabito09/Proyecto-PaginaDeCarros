@@ -61,17 +61,11 @@ export default function Footer() {
           <hr className="circuit-line" />
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-muted/60 text-xs tracking-wide">
+        <div className="flex justify-center">
+          <p className="text-muted/60 text-xs tracking-wide text-center">
             © {new Date().getFullYear()} ElectroAuto. Todos los derechos reservados. Diseñado con energía{" "}
             <span className="text-primary">Azul Eléctrico</span>.
           </p>
-          <Link
-            href="/admin/login"
-            className="text-xs text-muted/30 hover:text-muted transition-colors tracking-widest uppercase"
-          >
-            Acceso Admin
-          </Link>
         </div>
       </div>
     </footer>
