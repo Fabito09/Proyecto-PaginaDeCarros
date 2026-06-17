@@ -9,8 +9,8 @@ export const metadata = {
 
 const contactInfo = [
   { icon: Mail, label: "Email", value: "info@electroauto.com" },
-  { icon: Phone, label: "Teléfono", value: "+504 0000-0000" },
-  { icon: MapPin, label: "Ubicación", value: "Honduras" },
+  { icon: Phone, label: "Teléfono", value: "+506 0000-0000" },
+  { icon: MapPin, label: "Ubicación", value: "Costa Rica" },
   { icon: Clock, label: "Horario", value: "Lun–Vie 8am–6pm" },
 ];
 
