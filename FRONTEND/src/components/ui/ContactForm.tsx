@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { submitContactForm } from "@/app/actions/contact";
-import { Send, CheckCircle } from "lucide-react";
+import { Send, CheckCircle, Zap } from "lucide-react";
 
 export default function ContactForm() {
+  const searchParams = useSearchParams();
+  const carInterest = searchParams.get("interes") ?? "";
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -25,7 +29,7 @@ export default function ContactForm() {
     setStatus("loading");
     setErrorMsg("");
 
-    const result = await submitContactForm(form);
+    const result = await submitContactForm({ ...form, car_interest: carInterest || undefined });
 
     if (result.success) {
       setStatus("success");
@@ -56,6 +60,13 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      {carInterest && (
+        <div className="flex items-center gap-2 px-4 py-3 rounded-lg text-sm"
+          style={{ background: "rgba(0,229,255,0.06)", border: "1px solid rgba(0,229,255,0.2)" }}>
+          <Zap className="w-4 h-4 text-primary shrink-0" />
+          <span className="text-muted">Consultando sobre: <span className="text-primary font-medium">{carInterest}</span></span>
+        </div>
+      )}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
           <label className="label" htmlFor="name">Nombre *</label>

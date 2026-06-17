@@ -75,6 +75,9 @@ export default async function MessagesPage() {
                         )}
                       </div>
                       <p className="text-muted text-xs mb-2">{msg.email}{msg.phone ? ` · ${msg.phone}` : ""}</p>
+                      {msg.car_interest && (
+                        <p className="text-primary text-xs mb-2 font-medium">Interesado en: {msg.car_interest}</p>
+                      )}
                       <p className="text-foreground/80 text-sm leading-relaxed">{msg.message}</p>
                     </div>
                   </div>

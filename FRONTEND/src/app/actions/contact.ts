@@ -7,6 +7,7 @@ interface ContactInput {
   email: string;
   phone: string;
   message: string;
+  car_interest?: string;
 }
 
 interface ActionResult {
@@ -59,9 +60,11 @@ export async function submitContactForm(data: ContactInput): Promise<ActionResul
     return { success: false, error: `El mensaje debe tener entre 10 y ${MAX_LENGTHS.message} caracteres.` };
   }
 
+  const car_interest = data.car_interest?.trim() || null;
+
   const supabase = await createClient();
   const { error } = await supabase.from("contact_messages").insert([
-    { name, email, phone, message },
+    { name, email, phone, message, car_interest },
   ]);
 
   if (error) {
